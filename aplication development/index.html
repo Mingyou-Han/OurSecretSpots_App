@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Whisper Map</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="sidebar" aria-label="Spot controls">
+        <section class="brand-panel">
+          <div>
+            <p class="eyebrow">Whisper Map</p>
+            <h1>Find the places locals whisper about.</h1>
+          </div>
+          <p class="intro">
+            Save secluded waterholes, trails, quiet beaches, lookouts, and clothing-optional spots with privacy-first map access.
+          </p>
+        </section>
+
+        <section class="controls" aria-label="Filters">
+          <div class="field-row">
+            <label for="search">Search</label>
+            <input id="search" type="search" placeholder="waterhole, Bundeena, lookout" autocomplete="off" />
+          </div>
+          <div class="filter-grid" role="group" aria-label="Spot type filters">
+            <button class="chip active" data-filter="all" type="button">All</button>
+            <button class="chip" data-filter="waterhole" type="button">Waterholes</button>
+            <button class="chip" data-filter="trail" type="button">Trails</button>
+            <button class="chip" data-filter="beach" type="button">Beaches</button>
+            <button class="chip" data-filter="lookout" type="button">Lookouts</button>
+          </div>
+        </section>
+
+        <section class="save-panel" aria-labelledby="save-title">
+          <div class="section-heading">
+            <h2 id="save-title">Save a Spot</h2>
+            <span class="privacy-pill">Approx first</span>
+          </div>
+          <form id="spot-form">
+            <div class="field-row">
+              <label for="spot-name">Name</label>
+              <input id="spot-name" name="name" required placeholder="Mermaid Tail Waterhole" />
+            </div>
+            <div class="split-fields">
+              <div class="field-row">
+                <label for="spot-type">Type</label>
+                <select id="spot-type" name="type">
+                  <option value="waterhole">Waterhole</option>
+                  <option value="trail">Trail</option>
+                  <option value="beach">Beach</option>
+                  <option value="lookout">Lookout</option>
+                </select>
+              </div>
+              <div class="field-row">
+                <label for="spot-trust">Access</label>
+                <select id="spot-trust" name="trust">
+                  <option value="approximate">Approx pin</option>
+                  <option value="trusted">Trusted exact</option>
+                  <option value="locals">Locals only</option>
+                </select>
+              </div>
+            </div>
+            <div class="field-row">
+              <label for="spot-area">Area</label>
+              <input id="spot-area" name="area" required placeholder="Near Wattamolla, NSW" />
+            </div>
+            <div class="field-row">
+              <label for="spot-note">Safety and care note</label>
+              <textarea id="spot-note" name="note" rows="3" placeholder="Slippery after rain. Pack out everything."></textarea>
+            </div>
+            <button class="primary-action" type="submit">Save location first</button>
+          </form>
+        </section>
+
+        <section class="ethics-panel" aria-label="Leave no trace rules">
+          <h2>Protect the Secret</h2>
+          <ul>
+            <li>Exact pins unlock only through trust.</li>
+            <li>Show safety, access, and cultural notes before directions.</li>
+            <li>Flag fragile places before they get crowded.</li>
+          </ul>
+        </section>
+      </aside>
+
+      <section class="map-stage" aria-label="Secret spot map">
+        <div class="topbar">
+          <div>
+            <p class="map-kicker">Sydney / Dharawal Country</p>
+            <h2>Secluded Nature Spots</h2>
+          </div>
+          <div class="map-stats" aria-label="Map stats">
+            <span><strong id="visible-count">0</strong> shown</span>
+            <span><strong id="saved-count">0</strong> saved</span>
+          </div>
+        </div>
+
+        <div class="map-card">
+          <div class="map-art" role="img" aria-label="Stylised map with saved secret spot pins">
+            <div class="map-photo"></div>
+            <div class="terrain-grid"></div>
+            <div id="pins" class="pins"></div>
+            <div class="map-legend">
+              <span><i class="legend-dot public"></i>Approx</span>
+              <span><i class="legend-dot trusted"></i>Trusted</span>
+              <span><i class="legend-dot locals"></i>Locals</span>
+            </div>
+          </div>
+
+          <article id="spot-detail" class="spot-detail" aria-live="polite"></article>
+        </div>
+
+        <section class="spot-list" aria-label="Saved secret spots">
+          <div class="section-heading">
+            <h2>Local Whispers</h2>
+            <button id="reset-demo" class="text-action" type="button">Reset demo</button>
+          </div>
+          <div id="cards" class="cards"></div>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
